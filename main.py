@@ -52,7 +52,7 @@ if user_input and ngrok_url:
             timeout=60
         )
         data = resp.json()
-        ai_msg = AIMessage(content=data["response"])
+        ai_msg = AIMessage(content=data["messages"])
 
         st.chat_message("assistant").markdown(ai_msg.content)
         st.session_state.messages.append(ai_msg)
