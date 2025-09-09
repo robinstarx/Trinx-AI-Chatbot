@@ -48,11 +48,11 @@ if user_input and ngrok_url:
     try:
         resp = requests.post(
             API_URL.format(ngrok_url),
-            json={"session_id": st.session_state.thread_id,"query": user_input},
+            json={"session_id": st.session_state.thread_id,"prompt": user_input},
             timeout=60
         )
         data = resp.json()
-        ai_msg = AIMessage(content=data["answer_markdown"])
+        ai_msg = AIMessage(content=data["response"])
 
         st.chat_message("assistant").markdown(ai_msg.content)
         st.session_state.messages.append(ai_msg)
